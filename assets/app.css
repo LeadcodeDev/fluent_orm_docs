@@ -1,3 +1,22 @@
 @import 'unpoly';
 @import '@docsearch/css';
 @import '@dimerapp/docs-theme/styles';
+
+:root {
+  --shiki-color-text: #EEEEEE;
+  --shiki-color-background: #2B2D30;
+  --shiki-token-constant: #126D99;
+  --shiki-token-string: #75FC7A;
+  --shiki-token-comment: #7A7E85;
+  --shiki-token-keyword: #0EA5E9;
+  --shiki-token-parameter: #AA0000;
+  --shiki-token-function: #0EA5E9;
+  --shiki-token-string-expression: #75FC7A;
+
+  --pre-line-height: 1.8;
+  --code-font-size: 0.9rem;
+}
+
+.dimer_highlight {
+  background-color: var(--shiki-color-background) !important;
+}
