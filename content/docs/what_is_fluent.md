@@ -57,7 +57,7 @@ final class Article1691342071 extends Schema {
 final articles = await Database.of(manager)
   .forModel<Article>()
   .where(column: 'id', value: 1)
-  .get();
+  .all();
 
 expect(articles, isA<List<Article>>());
 ```

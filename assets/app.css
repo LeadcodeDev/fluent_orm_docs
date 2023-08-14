@@ -15,8 +15,24 @@
 
   --pre-line-height: 1.8;
   --code-font-size: 0.9rem;
+
+  --alert-warning-border: rgba(255, 122, 0, 0.5);
+  --alert-warning-background: rgba(255, 122, 0, 0.15);
+
+  --alert-note-border: rgba(100, 79, 193, 0.5);
+  --alert-note-background: rgba(100, 79, 193, 0.15);
 }
 
 .dimer_highlight {
   background-color: var(--shiki-color-background) !important;
+}
+
+.alert.alert-warning {
+  background-color: var(--alert-warning-background);
+  border-color: var(--alert-warning-border);
+}
+
+.alert.alert-note {
+  background-color: var(--alert-note-background);
+  border-color: var(--alert-note-border);
 }
