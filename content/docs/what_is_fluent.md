@@ -9,15 +9,20 @@ As a big fan of [Adonis](https://adonisjs.com) as I am, I didn't find the essenc
 
 It was with the aim of solidifying my knowledge in this field while offering a robust and reliable alternative to everyone that I designed **Fluent** : *The model-based ORM for Dart*.
 
+## Our philosophy
+With a view to agnostic and cross-platform use, we've decided to free ourselves from the language's reflexion, so that you can still compile your applications to [Javascript](https://dart.dev/web/js-interop), [AOT](https://dart.dev/tools/dart-compile#aot-snapshot), [JIT](https://dart.dev/tools/dart-compile#jit-snapshot) or as [executables](https://dart.dev/tools/dart-compile#exe).
+
 ## Example of use
+In this example, we're going to create a table called `articles`, which would hypothetically contain a list of subjects with a wide variety of themes.
 
-### Make your first model
-In this example, we will create a model to represent our table in a database.
+We won't go into detail here, as each step will be described in its own [section](migrations).
 
+:::codegroup
 ```dart
+// title: Model
 import 'package:fluent_orm/fluent_orm.dart';
 
-final class Article extends Model {
+final class Article extends Model<Article> {
   Article(): super(properties: ['id', 'title', 'content'])
   
   int get id => properties.get('id');
@@ -26,10 +31,9 @@ final class Article extends Model {
 }
 ```
 
-### Structure your database with migrations
-In a second step, we will create our database table using the migration system.
 ```dart
-class CategorySchema1691342071 extends Schema {
+// title: Migration
+final class Article1691342071 extends Schema {
   final String tableName = 'articles';
 
   @override
@@ -48,11 +52,13 @@ class CategorySchema1691342071 extends Schema {
 }
 ```
 
-### Retrieve data from the database
-Finally, we can consume our table to extract results
 ```dart
+// title: QueryBuilder
 final articles = await Database.of(manager)
   .forModel<Article>()
   .where(column: 'id', value: 1)
   .get();
+
+expect(articles, isA<List<Article>>());
 ```
+:::
