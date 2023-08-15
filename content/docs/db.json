@@ -24,6 +24,12 @@
     "category": "Guides"
   },
   {
+    "permalink": "hooks",
+    "title": "Hooks",
+    "contentPath": "./hooks.md",
+    "category": "Guides"
+  },
+  {
     "permalink": "standalone-builder",
     "title": "Standalone usage",
     "contentPath": "./standalone_query_builder.md",
