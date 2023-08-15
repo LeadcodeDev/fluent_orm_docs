@@ -36,3 +36,26 @@
   background-color: var(--alert-note-background);
   border-color: var(--alert-note-border);
 }
+
+.markdown .table_container {
+  overflow-x: auto;
+}
+
+.markdown table {
+  border-radius: var(--rounded-md);
+  overflow: hidden;
+  color: var(--pre-tabs-text-color);
+}
+
+.markdown table tr td, .markdown table tr th {
+  border: 0;
+}
+
+.markdown table thead {
+  background-color: var(--pre-background-color);
+  border-bottom: 1px solid var(--pre-title-border-color)
+}
+
+.markdown table tbody {
+  background-color: var(--shiki-color-background);
+}
