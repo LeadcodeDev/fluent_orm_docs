@@ -13,7 +13,7 @@
   },
   {
     "permalink": "migrations",
-    "title": "Migrations",
+    "title": "Schema migrations",
     "contentPath": "./migrations.md",
     "category": "Guides"
   },
@@ -21,6 +21,12 @@
     "permalink": "models",
     "title": "Models",
     "contentPath": "./models.md",
+    "category": "Guides"
+  },
+  {
+    "permalink": "hooks",
+    "title": "Hooks",
+    "contentPath": "./hooks.md",
     "category": "Guides"
   },
   {
@@ -34,5 +40,11 @@
     "title": "Query based model",
     "contentPath": "./model_query_builder.md",
     "category": "Query Builder"
+  },
+  {
+    "permalink": "schema-builder",
+    "title": "Schema Builder",
+    "contentPath": "./model_query_builder.md",
+    "category": "References"
   }
 ]
