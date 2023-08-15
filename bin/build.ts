@@ -10,7 +10,6 @@
 */
 
 import 'reflect-metadata'
-import { cp } from 'node:fs/promises'
 import { Ignitor } from '@adonisjs/core'
 
 /**
@@ -49,7 +48,7 @@ async function exportHTML() {
     }
   }
 
-  await cp(app.makePath('_redirects'), app.makePath('dist/_redirects'))
+  // await cp(app.makePath('_redirects'), app.makePath('dist/_redirects'))
 }
 
 const app = new Ignitor(APP_ROOT, { importer: IMPORTER })
