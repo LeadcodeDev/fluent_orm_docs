@@ -39,6 +39,10 @@ async function defineRoutes() {
 
   server.use([() => import('@adonisjs/static/static_middleware')])
 
+  router.get('/', async ({ view }) => {
+    return view.render('index', { scope: 'World' })
+  })
+
   router.get('*', async ({ request, response }) => {
     for (let collection of collections) {
       await collection.refresh()
