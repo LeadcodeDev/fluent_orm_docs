@@ -1,8 +1,38 @@
 [
   {
-    "permalink": "introduction",
-    "title": "Introduction",
-    "contentPath": "./introduction.md",
+    "permalink": "what-is-fluent",
+    "title": "What is fluent ?",
+    "contentPath": "./what_is_fluent.md",
+    "category": "Introduction"
+  },
+  {
+    "permalink": "getting-started",
+    "title": "Getting started",
+    "contentPath": "./getting_started.md",
+    "category": "Introduction"
+  },
+  {
+    "permalink": "migrations",
+    "title": "Migrations",
+    "contentPath": "./migrations.md",
     "category": "Guides"
+  },
+  {
+    "permalink": "models",
+    "title": "Models",
+    "contentPath": "./models.md",
+    "category": "Guides"
+  },
+  {
+    "permalink": "standalone-builder",
+    "title": "Standalone usage",
+    "contentPath": "./standalone_query_builder.md",
+    "category": "Query Builder"
+  },
+  {
+    "permalink": "model-query-builder",
+    "title": "Query based model",
+    "contentPath": "./model_query_builder.md",
+    "category": "Query Builder"
   }
 ]
