@@ -40,7 +40,7 @@ async function defineRoutes() {
   server.use([() => import('@adonisjs/static/static_middleware')])
 
   router.get('/', async ({ view }) => {
-    return view.render('index', { scope: 'World' })
+    return view.render('index')
   })
 
   router.get('*', async ({ request, response }) => {
