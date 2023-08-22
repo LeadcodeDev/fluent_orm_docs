@@ -24,7 +24,7 @@
 }
 
 .dimer_highlight {
-  background-color: var(--shiki-color-background) !important;
+  background-color: hsl(258, 20%, 17%) !important;
 }
 
 .alert.alert-warning {
@@ -57,5 +57,10 @@
 }
 
 .markdown table tbody {
-  background-color: var(--shiki-color-background);
+  color: white;
+  background-color: hsl(258, 20%, 17%) !important;
+}
+
+figure img {
+  border-radius: var(--rounded-md);
 }
