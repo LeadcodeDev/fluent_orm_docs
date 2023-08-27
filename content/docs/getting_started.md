@@ -134,22 +134,9 @@ import 'package:fluent_orm/fluent_orm.dart';
 
 final class Article extends Model<Article> {
   // highlight-start
-  Article(): super(properties: ['id', 'title', 'content'])
-  // highlight-end
-}
-```
-
-```dart
-// title: Implement getters
-import 'package:fluent_orm/fluent_orm.dart';
-
-final class Article extends Model<Article> {
-  Article(): super(properties: ['id', 'title', 'content'])
-
-  // highlight-start
-  int get id => properties.get('id');
-  String get title => properties.get('title');
-  String get content => properties.get('content');
+  int get id => model.property('id');
+  String get title => model.property('title');
+  String get content => model.property('content');
   // highlight-end
 }
 ```
@@ -180,9 +167,8 @@ Future<void> main () async {
   };
   
   final article = await Database.of(manager)
-    .forModel<Article>()
-    .insert(payload)
-    .save();
+    .model<Article>()
+    .create(payload);
 
   expect(article, isNotNull);
   expect(article, isA<Article>());
@@ -193,7 +179,7 @@ Future<void> main () async {
 // title: Get articles
 Future<void> main () async {
   final articles = await Database.of(manager)
-    .forModel<Article>()
+    .model<Article>()
     .all();
 
   expect(article, isA<List<Article>>());
@@ -204,9 +190,8 @@ Future<void> main () async {
 // title: Get one article
 Future<void> main () async {
   final Article? article = await Database.of(manager)
-    .forModel<Article>()
-    .where(column: 'id', value: 1)
-    .first();
+    .model<Article>()
+    .find(1);
 }
 ```
 
@@ -214,9 +199,8 @@ Future<void> main () async {
 // title: Update article
 Future<void> main () async {
   final article = await Database.of(manager)
-    .forModel<Article>()
-    .where(column: 'id', value: 1)
-    .firstOrFail();
+    .model<Article>()
+    .findOrFail(1);
   
   await article.update({ 'title': 'Hello World' });
 }
@@ -226,9 +210,8 @@ Future<void> main () async {
 // title: Delete article
 Future<void> main () async {
   final article = await Database.of(manager)
-    .forModel<Article>()
-    .where(column: 'id', value: 1)
-    .firstOrFail();
+    .model<Article>()
+    .findOrFail(1);
   
   await article.delete();
 }

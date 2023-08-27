@@ -19,8 +19,14 @@
   },
   {
     "permalink": "models",
-    "title": "Models",
+    "title": "Fluent models",
     "contentPath": "./models.md",
+    "category": "Guides"
+  },
+  {
+    "permalink": "relations",
+    "title": "Relationships",
+    "contentPath": "./relationships.md",
     "category": "Guides"
   },
   {
