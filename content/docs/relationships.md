@@ -33,9 +33,9 @@ final class UsersSchema extends Schema {
 }
 ```
 ```dart
-// title: profils
-final class ProfilsSchema extends Schema {
-  final String tableName = 'profils';
+// title: profiles
+final class ProfilesSchema extends Schema {
+  final String tableName = 'profiles';
 
   @override
   Future<void> up () async {
@@ -69,7 +69,7 @@ final class User extends Model<User> {
   // highlight-end
 
   // highlight-start
-  Profil get profil => relations.hasOne<Profil>();
+  Profil get profile => model.hasOne<Profile>();
   // highlight-end
 }
 ```
@@ -158,7 +158,7 @@ final class Category extends Model<Category> {
   // highlight-end
 
 // highlight-start
-  List<Article> get articles => relations.hasMany<Article>();
+  List<Article> get articles => model.hasMany<Article>();
 // highlight-end
 }
 ```
@@ -272,7 +272,7 @@ final class Article extends Model<Article> {
   // highlight-end
 
 // highlight-start
-  List<Tag> get tags => relations.manyToMany<Tag>();
+  List<Tag> get tags => model.manyToMany<Tag>();
 // highlight-end
 }
 ```
@@ -316,9 +316,9 @@ From the user's point of view, the `Profile` model is the target model of a `Has
 In this example, we need to declare a relationship within the `User` model in order to perform a junction to the `Profile` model.
 
 ```dart
-final class Profil extends Model<Profil> {
+final class Profile extends Model<Profile> {
   // highlight-start
-  Profil(): super(
+  Profile(): super(
     relations: [
       Relation<User>.belongTo()
     ]

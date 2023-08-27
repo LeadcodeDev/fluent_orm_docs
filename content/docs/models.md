@@ -60,8 +60,8 @@ If your migrations represent your SQL structure, then the templates represent th
 ```dart
 // title: Model definition
 final class Article extends Model<Article> {
-  String get title => properties.get('title');
-  String get content => properties.get('content');
+  String get title => model.property('title');
+  String get content => model.property('content');
 }
 ```
 
@@ -73,7 +73,7 @@ The key used in the bucket is that of your column name in SQL.
 
 ```dart
 final class Foo extends Foo<Article> {
-  String get propertyAccess => properties.get('property_in_database');
+  String get propertyAccess => model.property('property_in_database');
 }
 ```
 
@@ -88,8 +88,8 @@ You can define them as class getters.
 ```dart
 final class User extends Model<User> {
   // Properties
-  String get firstName => properties.get('firstname');
-  String get lastName => properties.get('lastname');
+  String get firstName => model.property('firstname');
+  String get lastName => model.property('lastname');
   
   // Computed property
   String get fullName => '$firstName $lastName';

@@ -12,12 +12,12 @@
     @end
   @end
 
-  <div class="max-w-6xl mx-auto py-24">
-    <div class="grid grid-cols-5">
-      <div class="col-span-3">
+  <div class="px-5 max-w-6xl mx-auto py-10 md:py-24">
+    <div class="md:grid grid-cols-5" up-preload>
+      <div class="md:col-span-3">
         <div class="max-w-3xl">
-          <h1 class="text-6xl font-semibold text-cyan-600">Fluent ORM</h1>
-          <p class="text-6xl font-semibold pt-2">Next-generation Dart ORM based model</p>
+          <h1 class="text-5xl md:text-6xl font-semibold text-cyan-600">Fluent ORM</h1>
+          <p class="text-4xl md:text-6xl font-semibold pt-2">Next-generation Dart ORM based model</p>
         </div>
         <div class="max-w-2xl">
           <p class="mt-5 text-xl font-medium leading-7 text-gray-600 dark:text-gray-500">
@@ -25,19 +25,23 @@
           </p>
 
           <div class="py-10 flex gap-5">
-            <a href="/docs/what-is-fluent" class="btn primary">🔥 Get started</a>
-            <a href="" class="btn secondary">View on Github</a>
+            <a href="{{ siteConfig.links.docs.href }}" class="btn primary">
+              {{ siteConfig.links.docs.title }}
+            </a>
+            <a href="{{ siteConfig.links.github.href }}" target="_blank" class="btn secondary">
+              {{ siteConfig.links.github.title }}
+            </a>
           </div>
         </div>
       </div>
-      <div class="col-span-2">
-        <div class="w-full transform -translate-y-10 translate-x-20">
-          @include('partials/demo_branding.edge')
+      <div class="md:col-span-2">
+        <div class="w-full md:transform md:-translate-y-10 md:translate-x-20">
+          <img src="{{ vite.assetPath(app.relativePath('assets/images/demo-branding.webp')) }}" class="pointer-events-none" />
         </div>
       </div>
     </div>
 
-    <div class="py-10 grid grid-cols-3 gap-5">
+    <div class="pt-10 grid md:grid-cols-3 gap-5">
       <div class="border border-gray-200 dark:border-gray-800 bg-gray-100 dark:bg-gray-800 rounded-lg p-5">
         <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-100">Humain Readability</h3>
         <p class="mt-2 text-base text-gray-600 dark:text-gray-400">

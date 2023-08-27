@@ -4,6 +4,10 @@
       "title": "Fluent ORM",
       "href": "/"
     },
+    "docs": {
+      "title": "🔥 Getting Started",
+      "href": "/docs/getting-started"
+    },
     "github": {
       "title": "View on Github",
       "href": "https://github.com/LeadcodeDev/fluent_orm_docs"

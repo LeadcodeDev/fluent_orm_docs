@@ -23,9 +23,9 @@ We won't go into detail here, as each step will be described in its own [section
 import 'package:fluent_orm/fluent_orm.dart';
 
 final class Article extends Model<Article> {
-  int get id => properties.get('id');
-  String get title => properties.get('title');
-  String get content => properties.get('content');
+  int get id => model.property('id');
+  String get title => model.property('title');
+  String get content => model.property('content');
 }
 ```
 
