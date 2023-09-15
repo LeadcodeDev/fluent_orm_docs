@@ -10,13 +10,11 @@ import 'package:crypto/crypto.dart';
 final class User extends Model<User> {
   User(): super(
     // highlight-start
-    hooks: HookModel(
-      beforeSave: [
-        (Map<String, dynamic> user) {
-          final bytes = utf8.encode(user.password);
-          user['password'] = sha1.convert(bytes);
-        }
-      ]
+    hooks: (hooks) => hooks.beforeSave(
+      (Map<String, dynamic> user) {
+        final bytes = utf8.encode(user.password);
+        user['password'] = sha1.convert(bytes);
+      }
     )
     // highlight-end
   );
@@ -73,15 +71,11 @@ The `BeforeCreate` hook lets you alter your model's data **before** its insertio
 // title: Constructor
 final class User extends Model<User> {
   User(): super(
-    hooks: HookModel(
-      // highlight-start
-      beforeCreate: [
-        (Map<String, dynamic> user) {
-          user['created_at'] = DateTime.now().millisecondsSinceEpoch;
-        }
-      ]
-      // highlight-end
-    )
+    // highlight-start
+    hooks: (hooks) => hooks.beforeSave(
+      (Map<String, dynamic> user) {
+        user['created_at'] = DateTime.now().millisecondsSinceEpoch;
+      })
     // highlight-end
   );
 }
@@ -117,13 +111,11 @@ import 'package:crypto/crypto.dart';
 final class User extends Model<User> {
   User(): super(
     // highlight-start
-    hooks: HookModel(
-      beforeSave: [
-        (Map<String, dynamic> user) {
-          final bytes = utf8.encode(user.password);
-          user['password'] = sha1.convert(bytes);
-        }
-      ]
+    hooks: (hooks) => hooks.beforeSave(
+      (Map<String, dynamic> user) {
+        final bytes = utf8.encode(user.password);
+        user['password'] = sha1.convert(bytes);
+      }
     )
     // highlight-end
   );
@@ -135,11 +127,9 @@ import 'package:crypto/crypto.dart';
 
 final class User extends Model<User> {
   User(): super(
-    hooks: HookModel(
-      // highlight-start
-      beforeSave: [hashPassword]
-      // highlight-end
-    )
+    // highlight-start
+    hooks: (hooks) => hooks.beforeSave(hashPassword)
+    // highlight-end
   );
 
   // highlight-start
@@ -164,14 +154,12 @@ import 'package:crypto/crypto.dart';
 final class User extends Model<User> {
   User(): super(
     // highlight-start
-    hooks: HookModel(
-      beforeDelete: [
+      hooks: (hooks) => hooks.beforeDelete(
         (AbstractStandaloneQueryBuilder<User> query) {
           final lastDate = DateTime.now().millisecondsSinceEpoch - 3600;
           query.andWhere('last_connexion', '<=', lastDate);
         }
-      ]
-    )
+      )
     // highlight-end
   );
 }
@@ -182,11 +170,9 @@ import 'package:crypto/crypto.dart';
 
 final class User extends Model<User> {
   User(): super(
-    hooks: HookModel(
-      // highlight-start
-      beforeDelete: [deleteOldUsers]
-      // highlight-end
-    )
+    // highlight-start
+    hooks: (hooks) => hooks.beforeDelete(deleteOldUsers)
+    // highlight-end
   );
   
   // highlight-start
