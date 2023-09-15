@@ -48,7 +48,7 @@ final class User extends Model<User> {
   );
   
   // highlight-start
-  static Future<void> hashPassword(Map<String, dynamic> user) async {
+  static void hashPassword(Map<String, dynamic> user) async {
     final bytes = utf8.encode(user.password);
     user['password'] = sha1.convert(bytes);
   }
@@ -61,6 +61,146 @@ Each hook is linked to an event in your model's lifecycle, and some hooks are ex
 
 :::note
 Hooks can only be used in the context of [models](models).
+:::
+
+### BeforeFetch
+The `BeforeFetch` hook lets you alter your model's data **before** data recovery from the database.
+
+:::codegroup
+```dart
+// title: Constructor
+final class User extends Model<User> {
+  User(): super(
+    // highlight-start
+    hooks: (hooks) => hooks.beforeFetch(
+      (AbstractStandaloneQueryBuilder<User> query) {
+        query.andWhere('is_deleted', true);
+      })
+    // highlight-end
+  );
+}
+```
+```dart
+// title: Static method
+final class User extends Model<User> {
+  User(): super(
+    // highlight-start
+    hooks: (hooks) => hooks.beforeFetch(softRecovery)
+    // highlight-end
+  );
+  
+  // highlight-start
+  static void softRecovery(AbstractStandaloneQueryBuilder<User> query) async {
+    query.andWhere('is_deleted', true);
+  }
+  // highlight-end
+}
+```
+:::
+
+### AfterFetch
+The `AfterFetch` hook lets you alter your model's data **after** data recovery from the database.
+
+:::codegroup
+```dart
+// title: Constructor
+final class User extends Model<User> {
+  User(): super(
+    // highlight-start
+    hooks: (hooks) => hooks.afterFetch(
+      (List<User> users) {
+        print('Users count: ${users.length}');
+      })
+    // highlight-end
+  );
+}
+```
+```dart
+// title: Static method
+final class User extends Model<User> {
+  User(): super(
+    // highlight-start
+    hooks: (hooks) => hooks.afterFetch(printUserCount)
+    // highlight-end
+  );
+  
+  // highlight-start
+  static void printUserCount(List<User> users) async {
+    print('Users count: ${query.length}');
+  }
+  // highlight-end
+}
+```
+:::
+
+### BeforeFind
+The `BeforeFind` hook lets you alter your model's data **before** one element recovery from the database.
+
+:::codegroup
+```dart
+// title: Constructor
+final class User extends Model<User> {
+  User(): super(
+    // highlight-start
+    hooks: (hooks) => hooks.beforeFind(
+      (AbstractStandaloneQueryBuilder<User> query) {
+        query.andWhere('is_deleted', true);
+      })
+    // highlight-end
+  );
+}
+```
+```dart
+// title: Static method
+final class User extends Model<User> {
+  User(): super(
+    // highlight-start
+    hooks: (hooks) => hooks.beforeFind(softRecovery)
+    // highlight-end
+  );
+  
+  // highlight-start
+  static void softRecovery(AbstractStandaloneQueryBuilder<User> query) async {
+    query.andWhere('is_deleted', true);
+  }
+  // highlight-end
+}
+```
+:::
+
+### AfterFetch
+The `AfterFetch` hook lets you alter your model's data **after** one element recovery from the database.
+
+:::codegroup
+```dart
+// title: Constructor
+final class User extends Model<User> {
+  User(): super(
+    // highlight-start
+    hooks: (hooks) => hooks.afterFind(
+      (User users) {
+        print('Current users: $user');
+      })
+    // highlight-end
+  );
+}
+```
+```dart
+// title: Static method
+final class User extends Model<User> {
+  User(): super(
+    // highlight-start
+    hooks: (hooks) => hooks.afterFind(printUser)
+    // highlight-end
+  );
+  
+  // highlight-start
+  static void printUser(User user) async {
+    print('Current users: $user');
+  }
+  // highlight-end
+}
+```
 :::
 
 ### BeforeCreate
@@ -84,16 +224,51 @@ final class User extends Model<User> {
 // title: Static method
 final class User extends Model<User> {
   User(): super(
-    hooks: HookModel(
-      // highlight-start
-      beforeSave: [setCreatedAt]
-      // highlight-end
-    )
+    // highlight-start
+    hooks: (hooks) => hooks.beforeSave(setCreatedAt)
+    // highlight-end
   );
   
   // highlight-start
-  static Future<void> setCreatedAt(Map<String, dynamic> user) async {
+  static void setCreatedAt(Map<String, dynamic> user) async {
     user['created_at'] = DateTime.now().millisecondsSinceEpoch;
+  }
+  // highlight-end
+}
+```
+:::
+
+### AfterCreate
+The `AfterCreate` hook lets you alter your model's data **after** its insertion and persistence in the database.
+
+:::codegroup
+```dart
+// title: Constructor
+final class User extends Model<User> {
+  String? foo;
+  
+  User(): super(
+    // highlight-start
+    hooks: (hooks) => hooks.afterCreate(
+      (User user) {
+        foo = 'bar';
+      })
+    // highlight-end
+  );
+}
+```
+```dart
+// title: Static method
+final class User extends Model<User> {
+  User(): super(
+    // highlight-start
+      hooks: (hooks) => hooks.afterCreate(setFoo)
+    // highlight-end
+  );
+  
+  // highlight-start
+  static void setFoo(User user) async {
+    foo = 'bar';
   }
   // highlight-end
 }
@@ -133,9 +308,49 @@ final class User extends Model<User> {
   );
 
   // highlight-start
-  static Future<void> hashPassword(Map<String, dynamic> user) async {
+  static void hashPassword(Map<String, dynamic> user) async {
     final bytes = utf8.encode(user.password);
     user['password'] = sha1.convert(bytes);
+  }
+// highlight-end
+}
+```
+:::
+
+### AfterSave
+The `AfterSave` hook lets you alter your model's data **after** its updating and persistence in the database.
+
+:::codegroup
+```dart
+// title: Constructor
+import 'package:crypto/crypto.dart';
+
+final class User extends Model<User> {
+  User(): super(
+    // highlight-start
+    hooks: (hooks) => hooks.afterSave(
+      (User user) {
+        print('User ${user.id} has been updated');
+      }
+    )
+    // highlight-end
+  );
+}
+```
+```dart
+// title: Static method
+import 'package:crypto/crypto.dart';
+
+final class User extends Model<User> {
+  User(): super(
+    // highlight-start
+    hooks: (hooks) => hooks.afterSave(printWhenSave)
+    // highlight-end
+  );
+
+  // highlight-start
+  static void printWhenSave(User user) async {
+    print('User ${user.id} has been updated');
   }
 // highlight-end
 }
@@ -176,7 +391,7 @@ final class User extends Model<User> {
   );
   
   // highlight-start
-  static Future<void> deleteOldUsers(query) {
+  static void deleteOldUsers(query) {
     final lastDate = DateTime.now().millisecondsSinceEpoch - 3600;
     query.andWhere('last_connexion', '<=', lastDate);
   }
