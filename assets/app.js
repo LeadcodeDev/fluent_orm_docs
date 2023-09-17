@@ -10,7 +10,12 @@ import {
   initSearchComponent,
 } from '@dimerapp/docs-theme/scripts'
 
-import.meta.glob(['../content/**/*.png', '../content/**/*.jpeg', '../content/**/*.jpg'])
+import.meta.glob([
+  '../content/**/*.png',
+  '../content/**/*.jpeg',
+  '../content/**/*.jpg',
+  '../content/images/**/*.webp'
+])
 
 Alpine.plugin(tabs)
 Alpine.plugin(Persist)
@@ -18,3 +23,4 @@ Alpine.plugin(initBaseComponents)
 Alpine.plugin(initSearchComponent(docsearch))
 Alpine.plugin(initZoomComponent(mediumZoom))
 Alpine.start()
+
