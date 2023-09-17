@@ -11,6 +11,7 @@
 
 import 'reflect-metadata'
 import { Ignitor } from '@adonisjs/core'
+import { writeFile } from 'fs/promises'
 
 /**
  * URL to the application root. AdonisJS need it to resolve
@@ -36,6 +37,7 @@ async function exportHTML() {
   const { collections } = await import('#src/collections')
   const { default: ace } = await import('@adonisjs/core/services/ace')
   const { default: app } = await import('@adonisjs/core/services/app')
+  const { default: view } = await import('@adonisjs/view/services/main')
 
   for (let collection of collections) {
     for (let entry of collection.all()) {
@@ -48,7 +50,13 @@ async function exportHTML() {
     }
   }
 
-  // await cp(app.makePath('_redirects'), app.makePath('dist/_redirects'))
+  try {
+  const html = await view.render('index', {})
+    await writeFile(app.makePath('dist/index.html'), html);
+    ace.ui.logger.action(`create dist/index.html`).succeeded()
+  } catch (error) {
+    ace.ui.logger.action(`create dist/index.html`).failed(error)
+  }
 }
 
 const app = new Ignitor(APP_ROOT, { importer: IMPORTER })

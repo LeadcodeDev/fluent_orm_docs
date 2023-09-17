@@ -9,7 +9,7 @@ Relations can be defined with `HasOne`, `HasMany`, `BelongTo` or `ManyToMany` me
 HasOne creates a `one to one` relationship between two models. For example, A `user` has __only one__ `profil`. The has one relationship needs a foreign key in the related table.
 
 Following is an example table structure for the has one relationship. The `profils.user_id` is the foreign key and forms the relationship with the users.id column.
-![has one relation](/assets/images/has_one_relation.webp)
+![has one relation](content/images/has_one_relation.webp)
 
 :::codegroup
 ```dart
@@ -100,7 +100,7 @@ The local key is always the **primary key of the parent model** but can also be 
 HasMany creates a `one to many` relationship between two models. For example, A `category` has __many__ `articles`. The has many relationship needs a foreign key in the related table.
 
 Following is an example table structure for the has one relationship. The `articles.category_id` is the foreign key and forms the relationship with the categories.id column.
-![has many relation](/assets/images/has_many_relation.webp)
+![has many relation](content/images/has_many_relation.webp)
 
 :::codegroup
 ```dart
@@ -195,7 +195,7 @@ This pivot table is named by the singular combination of the two tables linked b
 
 Following is an example table structure for the has one relationship.
 
-![many to many relation](/assets/images/many_to_many_relation.webp)
+![many to many relation](content/images/many_to_many_relation.webp)
 
 :::codegroup
 ```dart
@@ -309,7 +309,7 @@ In the case of a ManyToMany relationship, you'll need to use the same [`ManyToMa
 
 Consider the hasOne relationship example below. From the `Profil` model, you can define a reverse relationship to the `User` model.
 
-![has one relation](/assets/images/has_one_relation.webp)
+![has one relation](content/images/has_one_relation.webp)
 From the user's point of view, the `Profile` model is the target model of a `HasOne` relationship, but from the `Profile` model's point of view, it represents a `BelongTo` relationship to the `User` model.
 
 ### Defining a relationship
