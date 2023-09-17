@@ -37,7 +37,6 @@ async function exportHTML() {
   const { collections } = await import('#src/collections')
   const { default: ace } = await import('@adonisjs/core/services/ace')
   const { default: app } = await import('@adonisjs/core/services/app')
-  const { default: view } = await import('@adonisjs/view/services/main')
 
   for (let collection of collections) {
     for (let entry of collection.all()) {
@@ -51,7 +50,9 @@ async function exportHTML() {
   }
 
   try {
-  const html = await view.render('index', {})
+    const { default: view } = await import('@adonisjs/view/services/main')
+    console.log(view)
+    const html = await view.render('index')
     await writeFile(app.makePath('dist/index.html'), html);
     ace.ui.logger.action(`create dist/index.html`).succeeded()
   } catch (error) {
