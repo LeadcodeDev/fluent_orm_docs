@@ -142,3 +142,19 @@ final Article article = await Database.of(manager)
   .model<Article>()
   .all();
 ```
+
+### Paginate
+The `paginate` method retrieves a list of elements from your table, and the result is always an `List`.
+```dart
+final Pagination<Article> articles = await Database.of(manager)
+  .model<Article>()
+  .paginate(page: 1, itemsPerPage: 15);
+```
+The Pagination object contains the following properties:
+- `data`: The list of items for the current page.
+- `currentPage`: The current page number.
+- `itemsPerPage`: The number of items per page.
+- `firstPage`: The total number of items.
+- `lastPage`: The total number of pages.
+
+You can use the `next()` function to retrieve the next page, and the `previous()` function to retrieve the previous page.
