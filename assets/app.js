@@ -14,7 +14,8 @@ import.meta.glob([
   '../content/**/*.png',
   '../content/**/*.jpeg',
   '../content/**/*.jpg',
-  '../content/images/**/*.webp'
+  '../content/images/**/*.webp',
+  '../templates/images/**/*.webp'
 ])
 
 Alpine.plugin(tabs)
